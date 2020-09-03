@@ -1,4 +1,4 @@
-import { expectThatThereAreNoErrorsEmittedFromTheBrowser, navigateToRootPage } from '@company/core/testing/protractor';
+import { expectThatThereAreNoErrorsEmittedFromTheBrowser, checkScreen, navigateToRootPage } from '@company/core/testing/protractor';
 import { AppPage } from './app.po';
 
 describe('professional tour of heroes', () => {
@@ -11,6 +11,7 @@ describe('professional tour of heroes', () => {
   it('should display welcome message', async () => {
     await navigateToRootPage();
     expect(page.getTitleText()).toEqual('The Professional Tour Of Heroes');
+    expect(await checkScreen('welcome-page')).toBeLessThan(1);
   });
 
   afterEach(async () => {

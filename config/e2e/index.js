@@ -4,6 +4,7 @@ const { useDistConfig } = require('./dist-config');
 const { capabilityChrome } = require('./capabilities.chrome');
 const { capabilityChromeHeadless } = require('./capabilities.chrome-headless');
 const { localUrl, createDistUrl } = require('./base-urls');
+const { createImageComparisonPlugin } = require('./plugin-protractor-image-comparison');
 
 //@ts-check
 /**
@@ -32,6 +33,9 @@ function createE2eConfig(projectInfo, usePreBuiltLibraries = false) {
     urls: {
       local: localUrl,
       dist: createDistUrl(projectInfo.name),
+    },
+    plugins: {
+      imageComparison: createImageComparisonPlugin(projectInfo.name),
     },
 
     useDefaultConfig: useDefaultConfig(projectInfo),
