@@ -1,4 +1,4 @@
-import { expectThatThereAreNoErrorsEmittedFromTheBrowser, navigateToRootPage } from '../../libs/core/testing/protractor';
+import { expectThatThereAreNoErrorsEmittedFromTheBrowser, navigateToRootPage } from '@company/core/testing/protractor';
 import { AppPage } from './app.po';
 
 describe('professional tour of heroes', () => {
