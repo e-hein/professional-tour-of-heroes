@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CompanyHeroModule } from '../../libs/hero/src/public-api';
+import { CompanyHeroModule } from '@company/hero';
 import { AppComponent } from './app.component';
 
 describe('professional-tour-of-heroes app component', () => {

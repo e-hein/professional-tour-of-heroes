@@ -16,9 +16,9 @@
       "dom"
     ],
     "paths": {
-      "@company/hero": [
-        "dist/company/hero/hero",
-        "dist/company/hero"
+      "@company/*": [
+        "libs/*",
+        "libs/*/src/public-api.ts"
       ]
     }
   }
