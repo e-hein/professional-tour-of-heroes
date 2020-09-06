@@ -3,5 +3,8 @@
   "extends": "./tsconfig.lib.json",
   "angularCompilerOptions": {
     "enableIvy": false
+  },
+  "compilerOptions": {
+    "types": ["node", "jasmine"]
   }
 }

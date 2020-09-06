@@ -1,5 +1,5 @@
+import { expectThatThereAreNoErrorsEmittedFromTheBrowser, navigateToRootPage } from '../../libs/core/testing/protractor';
 import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
 
 describe('professional tour of heroes', () => {
   let page: AppPage;
@@ -8,16 +8,12 @@ describe('professional tour of heroes', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('Professional Tour Of Heroes');
+  it('should display welcome message', async () => {
+    await navigateToRootPage();
+    expect(page.getTitleText()).toEqual('The Professional Tour Of Heroes');
   });
 
   afterEach(async () => {
-    // Assert that there are no errors emitted from the browser
-    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
+    await expectThatThereAreNoErrorsEmittedFromTheBrowser();
   });
 });
