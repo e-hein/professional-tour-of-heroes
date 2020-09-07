@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { HeroComponent } from './hero.component';
+import { CompanyHeroComponent } from './hero.component';
 
 
 
 @NgModule({
-  declarations: [HeroComponent],
+  declarations: [CompanyHeroComponent],
   imports: [
   ],
-  exports: [HeroComponent]
+  exports: [CompanyHeroComponent]
 })
-export class HeroModule { }
+export class CompanyHeroModule { }

@@ -16,9 +16,9 @@
       "dom"
     ],
     "paths": {
-      "hero": [
-        "dist/hero/hero",
-        "dist/hero"
+      "@company/hero": [
+        "dist/company/hero/hero",
+        "dist/company/hero"
       ]
     }
   }

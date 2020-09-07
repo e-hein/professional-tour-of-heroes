@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lib-hero',
+  selector: 'company-hero',
   template: `
     <p>
-      hero works!
+      @company/hero works!
     </p>
   `,
   styles: [
   ]
 })
-export class HeroComponent implements OnInit {
+export class CompanyHeroComponent implements OnInit {
 
   constructor() { }
 
