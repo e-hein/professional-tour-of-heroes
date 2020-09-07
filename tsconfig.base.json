@@ -19,6 +19,10 @@
       "@company/*": [
         "libs/*",
         "libs/*/src/public-api.ts"
+      ],
+      "core": [
+        "dist/core/core",
+        "dist/core"
       ]
     }
   }
