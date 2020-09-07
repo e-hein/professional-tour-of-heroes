@@ -165,11 +165,11 @@
         }
       }
     },
-    "core": {
+    "@company/core": {
       "projectType": "library",
       "root": "libs/core",
       "sourceRoot": "libs/core/src",
-      "prefix": "lib",
+      "prefix": "company-core",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

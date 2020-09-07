@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CoreComponent } from './core.component';
+import { CompanyCoreComponent } from './core.component';
 
 
 
 @NgModule({
-  declarations: [CoreComponent],
+  declarations: [CompanyCoreComponent],
   imports: [
   ],
-  exports: [CoreComponent]
+  exports: [CompanyCoreComponent]
 })
-export class CoreModule { }
+export class CompanyCoreModule { }
