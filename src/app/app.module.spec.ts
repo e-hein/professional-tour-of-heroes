@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CompanyHeroModule } from '../../libs/hero/src/public-api';
 import { AppComponent } from './app.component';
+import { AppModule } from './app.module';
 
-describe('professional-tour-of-heroes app component', () => {
+describe('professional-tour-of-heroes app module', () => {
   let fixture: ComponentFixture<AppComponent>;
   let app: AppComponent;
   let errorSpy: jasmine.Spy;
@@ -17,12 +17,7 @@ describe('professional-tour-of-heroes app component', () => {
     cleanupTasks.push(() => console.error = origConsoleError);
 
     await TestBed.configureTestingModule({
-      imports: [
-        CompanyHeroModule,
-      ],
-      declarations: [
-        AppComponent,
-      ],
+      imports: [AppModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
@@ -34,9 +29,5 @@ describe('professional-tour-of-heroes app component', () => {
     fixture.detectChanges();
     await fixture.whenStable();
     expect(errorSpy).not.toHaveBeenCalled();
-  });
-
-  it(`should have as title 'Professional Tour Of Heroes'`, () => {
-    expect(app.title).toEqual('Professional Tour Of Heroes');
   });
 });
