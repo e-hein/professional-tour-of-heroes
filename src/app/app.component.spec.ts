@@ -16,16 +16,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'professional-tour-of-heroes'`, () => {
+  it(`should have as title 'Professional Tour Of Heroes'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('professional-tour-of-heroes');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('professional-tour-of-heroes app is running!');
+    expect(app.title).toEqual('Professional Tour Of Heroes');
   });
 });
