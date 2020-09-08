@@ -1,6 +1,6 @@
 //@ts-check
 const { setBaseOptions } = require('./set-base-options');
-const { launchChrome } = require('./launch-chrome');
+const { launchChromeHeadless } = require('./launch-chrome-headless');
 const { addCoverage } = require('./add-coverage');
 
 /**
@@ -11,7 +11,7 @@ const { addCoverage } = require('./add-coverage');
 function useDefaultConfig(projectInfo) {
   return function (config) {
     setBaseOptions(config);
-    launchChrome(config);
+    launchChromeHeadless(config);
     addCoverage(projectInfo.name)(config);
   };
 }

@@ -23,6 +23,7 @@ function createKarmaConfigf(projectInfo) {
     setBaseOptions: require('./set-base-options').setBaseOptions,
     addCoverage: require('./add-coverage').addCoverage(projectInfo.name),
     launchChrome: require('./launch-chrome').launchChrome,
+    launchCromeHeadless: require('./launch-chrome-headless').launchChromeHeadless,
 
     useDefaultConfig: require('./default-config').useDefaultConfig(projectInfo),
   }
