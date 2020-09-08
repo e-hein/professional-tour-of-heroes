@@ -30,6 +30,8 @@ First you have to configure webdriver by running `npm run update-webdriver` once
 - `npm run e2e` to start a dev server and execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 - `npm run protractor` to execute the e2e tests for a running dev server.
 - `npm run protractor_watch` will execute `npm run protractor` after every file changes.
+- `npm run protractor:dist` to execute the e2e tests with an existing build result.
+- `npm run protractor:dist -- --base-url https://deployed-app.company.de` to execute them for a running deployment of the app.
 
 ## Further help
 
