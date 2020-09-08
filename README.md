@@ -25,7 +25,10 @@ After build you can start the app at http://localhost:8080 by `npm run serve:dis
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+First you have to configure webdriver by running `npm run update-webdriver` once - repeat it whenever you encounter compatibility issues. Maybe you have to explicitly specify your chrome version with `npm run update-webdriver -- --versions.chrome={yourChromeVersion}`. You can find your version in by navigating to `chrome://system` in Chrome help or by starting Chrome with the flag `--version` (e.g. `/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version`).
+
+- `npm run e2e` to start a dev server and execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- `npm run protractor` to execute the e2e tests for a running dev server.
 
 ## Further help
 

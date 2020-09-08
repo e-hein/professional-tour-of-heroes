@@ -8,7 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "coverage": "ng test --code-coverage --watch false",
-    "e2e": "ng e2e",
+    "update-webdriver": "node node_modules/protractor/node_modules/webdriver-manager update --standalone false --gecko false",
+    "e2e": "ng e2e --webdriver-update false",
+    "protractor": "protractor e2e/protractor.conf.js",
     "serve:dist": "http-server ./dist/apps"
   },
   "private": true,
