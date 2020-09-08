@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { itShouldCreateComponent } from '@company/core/testing/testbed';
-import { CompanyHeroComponent, CompanyHeroModule } from '../public-api';
+import { CompanyCoreComponent, CompanyCoreModule } from '../public-api';
 
-describe('company hero module', () => {
+describe('company core module', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [ CompanyHeroModule ]
+    imports: [ CompanyCoreModule ]
   }).compileComponents());
 
-  itShouldCreateComponent(CompanyHeroComponent);
+  itShouldCreateComponent(CompanyCoreComponent);
 });

@@ -26,8 +26,12 @@
     "protractor": {
       "patterns": [
         "e2e/**/*.*",
-        "src/**/*.*"
-      ]
+        "src/**/*.*",
+        "libs/**/*.ts",
+        "testing/**/*.ts",
+        "!**/*.spec.ts"
+      ],
+      "extensions": "*"
     }
   },
   "private": true,

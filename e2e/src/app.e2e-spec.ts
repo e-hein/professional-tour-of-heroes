@@ -1,17 +1,57 @@
-import { expectThatThereAreNoErrorsEmittedFromTheBrowser, checkScreen, navigateToRootPage } from '@company/core/testing/protractor';
-import { AppPage } from './app.po';
+import { checkScreen, expectThatThereAreNoErrorsEmittedFromTheBrowser, navigateToRootPage, CoreCo } from '@company/core/testing/protractor';
+import { HeroCo } from '@company/hero/testing/protractor';
+import { AppPage } from '@app/testing/protractor';
 
 describe('professional tour of heroes', () => {
-  let page: AppPage;
+  let appPage: AppPage;
 
-  beforeEach(() => {
-    page = new AppPage();
+  beforeAll(async () => {
+    await navigateToRootPage();
+    appPage = new AppPage();
+  });
+
+  it('should match spec shot', async () => {
+    expect(await checkScreen('welcome-page')).toBeLessThan(1);
   });
 
   it('should display welcome message', async () => {
-    await navigateToRootPage();
-    expect(page.getTitleText()).toEqual('The Professional Tour Of Heroes');
-    expect(await checkScreen('welcome-page')).toBeLessThan(1);
+    expect(await appPage.getTitleText()).toEqual('The Professional Tour Of Heroes');
+  });
+
+  it('should contain the hero component', async () => {
+    expect(await appPage.getHeroComponent()).toBeTruthy();
+  });
+
+  describe('hero component', () => {
+    let heroComponent: HeroCo;
+
+    beforeAll(() => {
+      heroComponent = appPage.getHeroComponent();
+    });
+
+    it('should be displayed', async () => {
+      expect(await heroComponent.isDisplayed()).toBe(true);
+    });
+
+    it(`should contain text '@company/core'`, async () => {
+      expect(await heroComponent.text()).toContain('@company/hero');
+    });
+
+    describe('containing core component that', () => {
+      let coreComponent: CoreCo;
+
+      beforeAll(() => {
+        coreComponent = heroComponent.getCoreComponent();
+      });
+
+      it('should be displayed', async () => {
+        expect(await coreComponent.isDisplayed()).toBe(true);
+      });
+
+      it(`should contain text '@company/core'`, async () => {
+        expect(await coreComponent.text()).toContain('@company/core');
+      });
+    });
   });
 
   afterEach(async () => {

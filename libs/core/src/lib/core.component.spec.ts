@@ -1,25 +1,28 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { itShouldCreateComponent } from '@company/core/testing/testbed';
 import { CompanyCoreComponent } from './core.component';
 
 describe('company core component', () => {
-  let component: CompanyCoreComponent;
-  let fixture: ComponentFixture<CompanyCoreComponent>;
+  beforeEach(() => TestBed.configureTestingModule({
+    declarations: [ CompanyCoreComponent ]
+  }).compileComponents());
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CompanyCoreComponent ]
-    })
-    .compileComponents();
-  }));
+  itShouldCreateComponent(CompanyCoreComponent);
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CompanyCoreComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  describe('created', () => {
+    let component: CompanyCoreComponent;
+    let fixture: ComponentFixture<CompanyCoreComponent>;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(CompanyCoreComponent);
+      component = fixture.componentInstance;
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+    });
+
+    it(`should contain text '@company/core'`, () => {
+      expect(fixture.debugElement.nativeElement.textContent).toContain('@company/core');
+    });
   });
 });

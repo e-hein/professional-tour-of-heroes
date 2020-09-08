@@ -1,42 +1,50 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CompanyHeroModule } from '@company/hero';
+import { By } from '@angular/platform-browser';
+import { CompanyCoreComponent } from '@company/core';
+import { itShouldCreateComponent } from '@company/core/testing/testbed';
+import { CompanyHeroComponent, CompanyHeroModule } from '@company/hero';
 import { AppComponent } from './app.component';
 
 describe('professional-tour-of-heroes app component', () => {
-  let fixture: ComponentFixture<AppComponent>;
-  let app: AppComponent;
-  let errorSpy: jasmine.Spy;
-  let cleanupTasks: Array<() => Promise<any> | any>;
+  beforeEach(() => TestBed.configureTestingModule({
+    imports: [
+      CompanyHeroModule,
+    ],
+    declarations: [
+      AppComponent,
+    ],
+  }).compileComponents());
 
-  beforeEach(async () => {
-    cleanupTasks = [];
+  itShouldCreateComponent(AppComponent);
 
-    const origConsoleError = console.error;
-    errorSpy = jasmine.createSpy('error').and.callThrough();
-    console.error = errorSpy;
-    cleanupTasks.push(() => console.error = origConsoleError);
+  describe('created', () => {
+    let fixture: ComponentFixture<AppComponent>;
+    let app: AppComponent;
 
-    await TestBed.configureTestingModule({
-      imports: [
-        CompanyHeroModule,
-      ],
-      declarations: [
-        AppComponent,
-      ],
-    }).compileComponents();
+    beforeEach(() => {
+      fixture = TestBed.createComponent(AppComponent);
+      app = fixture.componentInstance;
+    });
 
-    fixture = TestBed.createComponent(AppComponent);
-    app = fixture.componentInstance;
-  });
-  afterEach(() => Promise.all(cleanupTasks));
+    it(`should have as title 'The Professional Tour Of Heroes'`, () => {
+      expect(app.title).toEqual('The Professional Tour Of Heroes');
+    });
 
-  it('should create the app', async () => {
-    fixture.detectChanges();
-    await fixture.whenStable();
-    expect(errorSpy).not.toHaveBeenCalled();
-  });
+    describe('hero component', () => {
+      let heroComponent: DebugElement;
 
-  it(`should have as title 'The Professional Tour Of Heroes'`, () => {
-    expect(app.title).toEqual('The Professional Tour Of Heroes');
+      beforeEach(() => {
+        heroComponent = fixture.debugElement.query(By.directive(CompanyHeroComponent));
+      });
+
+      it('should be present', () => {
+        expect(heroComponent).toBeTruthy();
+      });
+
+      it('should contain core component', () => {
+        expect(heroComponent.query(By.directive(CompanyCoreComponent))).toBeTruthy();
+      });
+    });
   });
 });

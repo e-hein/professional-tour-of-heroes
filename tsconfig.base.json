@@ -19,6 +19,9 @@
       "@company/*": [
         "libs/*",
         "libs/*/src/public-api.ts"
+      ],
+      "@app/testing/*": [
+        "testing/*"
       ]
     }
   }

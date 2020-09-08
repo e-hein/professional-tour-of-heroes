@@ -1,34 +1,34 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CompanyCoreModule } from '@company/core';
+import { By } from '@angular/platform-browser';
+import { CompanyCoreComponent, CompanyCoreModule } from '@company/core';
+import { itShouldCreateComponent } from '@company/core/testing/testbed';
 import { CompanyHeroComponent } from './hero.component';
 
 describe('company hero component', () => {
-  let component: CompanyHeroComponent;
-  let fixture: ComponentFixture<CompanyHeroComponent>;
-  let errorSpy: jasmine.Spy;
-  let cleanupTasks: Array<() => Promise<any> | any>;
+  beforeEach(() => TestBed.configureTestingModule({
+    imports: [ CompanyCoreModule ],
+    declarations: [ CompanyHeroComponent ]
+  }).compileComponents());
 
-  beforeEach(async () => {
-    cleanupTasks = [];
+  itShouldCreateComponent(CompanyHeroComponent);
 
-    const origConsoleError = console.error;
-    errorSpy = jasmine.createSpy('error').and.callThrough();
-    console.error = errorSpy;
-    cleanupTasks.push(() => console.error = origConsoleError);
+  describe('created', () => {
+    let component: CompanyHeroComponent;
+    let fixture: ComponentFixture<CompanyHeroComponent>;
 
-    await TestBed.configureTestingModule({
-      imports: [ CompanyCoreModule ],
-      declarations: [ CompanyHeroComponent ]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(CompanyHeroComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+      await fixture.whenStable();
+    });
 
-    fixture = TestBed.createComponent(CompanyHeroComponent);
-    component = fixture.componentInstance;
-  });
+    it(`should contain text '@company/hero'`, () => {
+      expect(fixture.debugElement.nativeElement.textContent).toContain('@company/hero');
+    });
 
-  it('should create', async () => {
-    fixture.detectChanges();
-    await fixture.whenStable();
-    expect(errorSpy).not.toHaveBeenCalled();
+    it('should contain a core component', () => {
+      expect(fixture.debugElement.query(By.directive(CompanyCoreComponent))).toBeTruthy();
+    });
   });
 });
