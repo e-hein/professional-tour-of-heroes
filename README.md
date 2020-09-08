@@ -20,7 +20,8 @@ After build you can start the app at http://localhost:8080 by `npm run serve:dis
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* `npm run coverage` to run unit tests with coverage output to the `./coverage/{projectName}` folder (which is in .gitignore).
 
 ## Running end-to-end tests
 
