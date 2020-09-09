@@ -1,11 +1,13 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CompanyCoreModule } from '@company/core';
 import { itShouldCreateComponent } from '@company/core/testing/testbed';
 import { CoreExamplesComponentHarness } from '@examples/core/testing';
 import { CoreExamplesComponent } from './core-examples.component';
 
 describe('company core examples component', () => {
   beforeEach(() => TestBed.configureTestingModule({
+    imports: [ CompanyCoreModule ],
     declarations: [ CoreExamplesComponent ]
   }).compileComponents());
 
@@ -24,6 +26,11 @@ describe('company core examples component', () => {
 
     it(`should contain text '@examples/core'`, async () => {
       expect(await harness.text()).toContain('@examples/core');
+    });
+
+    it('should show example of core component', async () => {
+      const coreComponent = await harness.getCoreComponent();
+      expect(await coreComponent.isDisplayed()).toBe(true);
     });
   });
 });
