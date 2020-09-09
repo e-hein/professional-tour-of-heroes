@@ -20,6 +20,13 @@
         "libs/*",
         "libs/*/src/public-api.ts"
       ],
+      "@examples/*/testing": [
+        "libs/*-examples/testing"
+      ],
+      "@examples/*": [
+        "libs/*-examples",
+        "libs/*-examples/src/public-api.ts"
+      ],
       "@app/testing": [
         "testing"
       ],
