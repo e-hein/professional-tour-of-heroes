@@ -1,27 +1,8 @@
-import { ProtractorHarnessEnvironment } from '@angular/cdk/testing/protractor';
-import { AppHarness } from '@app/testing';
-import { CoreComponentHarness, SharedSpecContext } from '@company/core/testing';
-import { expectThatThereAreNoErrorsEmittedFromTheBrowser, navigateToRootPage, ProtractorSpecContext } from '@company/core/testing/protractor';
+import { SharedSpecContext, CoreComponentHarness } from '@company/core/testing';
+import { AppHarness } from './app.component-harness';
 import { HeroComponentHarness } from '@company/hero/testing';
 
-describe('professional tour of heroes', () => {
-  beforeAll(async () => {
-    await navigateToRootPage();
-  });
-
-  describe('app acceptance', () => {
-    runAcceptanceTests(
-      new ProtractorSpecContext(),
-      () => ProtractorHarnessEnvironment.loader().getHarness(AppHarness),
-    );
-  });
-
-  afterEach(async () => {
-    await expectThatThereAreNoErrorsEmittedFromTheBrowser();
-  });
-});
-
-function runAcceptanceTests(context: SharedSpecContext, getApp: () => Promise<AppHarness> ): void {
+export function runAcceptanceTests(context: SharedSpecContext, getApp: () => Promise<AppHarness> ): void {
   let appPage: AppHarness;
 
   context.before(async () => {
