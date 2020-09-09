@@ -1,19 +1,13 @@
-import { WebElementPromise } from 'protractor';
+import { ComponentHarness } from '@angular/cdk/testing';
 
-export abstract class BaseComponentObject {
-  constructor(
-    public readonly host: WebElementPromise,
-  ) {}
-
+export abstract class BaseComponentHarness extends ComponentHarness {
   async isDisplayed(): Promise<boolean> {
-    const host = await this.host;
-    const isDisplayed = await host.isDisplayed();
-    return isDisplayed;
+    const host = await this.host();
+    const dimensions = await host.getDimensions();
+    return dimensions.height > 0 && dimensions.width > 0;
   }
 
   async text(): Promise<string> {
-    const host = await this.host;
-    const text = await host.getText();
-    return text;
+    return await (await this.host()).text();
   }
 }

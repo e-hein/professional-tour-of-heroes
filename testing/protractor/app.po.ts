@@ -1,17 +1,24 @@
-import { BaseComponentObject } from '@company/core/testing/protractor';
-import { HeroCo } from '@company/hero/testing/protractor';
-import { browser, by, element } from 'protractor';
+import { BaseComponentHarness } from '@company/core/testing/protractor';
+import { HeroComponentHarness } from '@company/hero/testing/protractor';
 
-export class AppPage extends BaseComponentObject {
-  constructor() {
-    super(browser.findElement(by.css('app-root')));
+export class AppHarness extends BaseComponentHarness {
+  static hostSelector = 'app-root';
+
+  async isDisplayed(): Promise<boolean> {
+    const host = await this.host();
+    if (!host.matchesSelector(AppHarness.hostSelector)) {
+      throw new Error('host is not a core component!');
+    }
+    return super.isDisplayed();
   }
 
-  getTitleText(): Promise<string> {
-    return Promise.resolve(element(by.css('h1')).getText());
+  async getTitleText(): Promise<string> {
+    const title = await this.locatorFor('h1')();
+    const titleText = await title.text();
+    return titleText;
   }
 
-  getHeroComponent(): HeroCo {
-    return new HeroCo(this.host);
+  async getHeroComponent(): Promise<HeroComponentHarness> {
+    return await this.locatorFor(HeroComponentHarness)();
   }
 }

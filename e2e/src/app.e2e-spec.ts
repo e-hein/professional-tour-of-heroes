@@ -1,13 +1,15 @@
-import { checkScreen, expectThatThereAreNoErrorsEmittedFromTheBrowser, navigateToRootPage, CoreCo } from '@company/core/testing/protractor';
-import { HeroCo } from '@company/hero/testing/protractor';
-import { AppPage } from '@app/testing/protractor';
+import { expectThatThereAreNoErrorsEmittedFromTheBrowser, checkScreen, navigateToRootPage } from '@company/core/testing/protractor';
+import { ProtractorHarnessEnvironment } from '@angular/cdk/testing/protractor';
+import { AppHarness } from '@app/testing/protractor';
+import { HeroComponentHarness } from '@company/hero/testing/protractor';
+import { CoreComponentHarness } from '@company/core/testing/protractor';
 
 describe('professional tour of heroes', () => {
-  let appPage: AppPage;
+  let appPage: AppHarness;
 
   beforeAll(async () => {
     await navigateToRootPage();
-    appPage = new AppPage();
+    appPage = await ProtractorHarnessEnvironment.loader().getHarness(AppHarness);
   });
 
   it('should match spec shot', async () => {
@@ -23,10 +25,10 @@ describe('professional tour of heroes', () => {
   });
 
   describe('hero component', () => {
-    let heroComponent: HeroCo;
+    let heroComponent: HeroComponentHarness;
 
-    beforeAll(() => {
-      heroComponent = appPage.getHeroComponent();
+    beforeAll(async () => {
+      heroComponent = await appPage.getHeroComponent();
     });
 
     it('should be displayed', async () => {
@@ -38,10 +40,10 @@ describe('professional tour of heroes', () => {
     });
 
     describe('containing core component that', () => {
-      let coreComponent: CoreCo;
+      let coreComponent: CoreComponentHarness;
 
-      beforeAll(() => {
-        coreComponent = heroComponent.getCoreComponent();
+      beforeAll(async () => {
+        coreComponent = await heroComponent.getCoreComponent();
       });
 
       it('should be displayed', async () => {

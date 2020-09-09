@@ -1,12 +1,9 @@
-import { BaseComponentObject, CoreCo } from '@company/core/testing/protractor';
-import { by, WebElement } from 'protractor';
+import { CoreComponentHarness, BaseComponentHarness } from '@company/core/testing/protractor';
 
-export class HeroCo extends BaseComponentObject {
-  constructor(parent: WebElement) {
-    super(parent.findElement(by.css('company-hero')));
-  }
+export class HeroComponentHarness extends BaseComponentHarness {
+  static hostSelector = 'company-hero';
 
-  getCoreComponent(): CoreCo {
-    return new CoreCo(this.host);
+  async getCoreComponent(): Promise<CoreComponentHarness> {
+    return await this.locatorFor(CoreComponentHarness)();
   }
 }
