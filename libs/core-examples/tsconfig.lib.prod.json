@@ -3,5 +3,11 @@
   "extends": "./tsconfig.lib.json",
   "angularCompilerOptions": {
     "enableIvy": false
+  },
+  "compilerOptions": {
+    "paths": {
+      "@company/*": ["dist/company/*"],
+      "@examples/*": ["dist/examples/*"]
+    }
   }
 }
