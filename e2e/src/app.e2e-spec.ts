@@ -1,19 +1,35 @@
-import { expectThatThereAreNoErrorsEmittedFromTheBrowser, checkScreen, navigateToRootPage } from '@company/core/testing/protractor';
 import { ProtractorHarnessEnvironment } from '@angular/cdk/testing/protractor';
 import { AppHarness } from '@app/testing';
+import { CoreComponentHarness, SharedSpecContext } from '@company/core/testing';
+import { expectThatThereAreNoErrorsEmittedFromTheBrowser, navigateToRootPage, ProtractorSpecContext } from '@company/core/testing/protractor';
 import { HeroComponentHarness } from '@company/hero/testing';
-import { CoreComponentHarness } from '@company/core/testing';
 
 describe('professional tour of heroes', () => {
-  let appPage: AppHarness;
-
   beforeAll(async () => {
     await navigateToRootPage();
-    appPage = await ProtractorHarnessEnvironment.loader().getHarness(AppHarness);
+  });
+
+  describe('app acceptance', () => {
+    runAcceptanceTests(
+      new ProtractorSpecContext(),
+      () => ProtractorHarnessEnvironment.loader().getHarness(AppHarness),
+    );
+  });
+
+  afterEach(async () => {
+    await expectThatThereAreNoErrorsEmittedFromTheBrowser();
+  });
+});
+
+function runAcceptanceTests(context: SharedSpecContext, getApp: () => Promise<AppHarness> ): void {
+  let appPage: AppHarness;
+
+  context.before(async () => {
+    appPage = await getApp();
   });
 
   it('should match spec shot', async () => {
-    expect(await checkScreen('welcome-page')).toBeLessThan(1);
+    expect(await context.checkScreen('welcome-page')).toBeLessThan(1);
   });
 
   it('should display welcome message', async () => {
@@ -27,7 +43,7 @@ describe('professional tour of heroes', () => {
   describe('hero component', () => {
     let heroComponent: HeroComponentHarness;
 
-    beforeAll(async () => {
+    context.before(async () => {
       heroComponent = await appPage.getHeroComponent();
     });
 
@@ -42,7 +58,7 @@ describe('professional tour of heroes', () => {
     describe('containing core component that', () => {
       let coreComponent: CoreComponentHarness;
 
-      beforeAll(async () => {
+      context.before(async () => {
         coreComponent = await heroComponent.getCoreComponent();
       });
 
@@ -55,8 +71,4 @@ describe('professional tour of heroes', () => {
       });
     });
   });
-
-  afterEach(async () => {
-    await expectThatThereAreNoErrorsEmittedFromTheBrowser();
-  });
-});
+}
