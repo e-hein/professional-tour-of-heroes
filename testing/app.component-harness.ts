@@ -1,5 +1,5 @@
-import { BaseComponentHarness } from '@company/core/testing/protractor';
-import { HeroComponentHarness } from '@company/hero/testing/protractor';
+import { BaseComponentHarness } from '@company/core/testing';
+import { HeroComponentHarness } from '@company/hero/testing';
 
 export class AppHarness extends BaseComponentHarness {
   static hostSelector = 'app-root';

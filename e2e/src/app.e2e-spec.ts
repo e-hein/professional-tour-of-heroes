@@ -1,8 +1,8 @@
 import { expectThatThereAreNoErrorsEmittedFromTheBrowser, checkScreen, navigateToRootPage } from '@company/core/testing/protractor';
 import { ProtractorHarnessEnvironment } from '@angular/cdk/testing/protractor';
-import { AppHarness } from '@app/testing/protractor';
-import { HeroComponentHarness } from '@company/hero/testing/protractor';
-import { CoreComponentHarness } from '@company/core/testing/protractor';
+import { AppHarness } from '@app/testing';
+import { HeroComponentHarness } from '@company/hero/testing';
+import { CoreComponentHarness } from '@company/core/testing';
 
 describe('professional tour of heroes', () => {
   let appPage: AppHarness;

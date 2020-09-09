@@ -1,4 +1,4 @@
-import { CoreComponentHarness, BaseComponentHarness } from '@company/core/testing/protractor';
+import { CoreComponentHarness, BaseComponentHarness } from '@company/core/testing';
 
 export class HeroComponentHarness extends BaseComponentHarness {
   static hostSelector = 'company-hero';
