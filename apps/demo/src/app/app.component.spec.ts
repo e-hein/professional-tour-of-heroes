@@ -1,9 +1,10 @@
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { itShouldCreateComponent } from '@company/core/testing/testbed';
-import { AppComponent } from './app.component';
 import { DemoAppComponentHarness, DemoNavigationComponentHarness } from '@demo-app/testing';
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { DemoAppComponent } from './app.component';
 
 describe('demo app component', () => {
   beforeEach(async () => TestBed.configureTestingModule({
@@ -11,19 +12,20 @@ describe('demo app component', () => {
       RouterTestingModule
     ],
     declarations: [
-      AppComponent
+      DemoAppComponent,
+      StubbedNavigationComponent,
     ],
   }).compileComponents());
 
-  itShouldCreateComponent(AppComponent);
+  itShouldCreateComponent(DemoAppComponent);
 
   describe('created', () => {
     let harness: DemoAppComponentHarness;
-    let app: AppComponent;
-    let fixture: ComponentFixture<AppComponent>;
+    let app: DemoAppComponent;
+    let fixture: ComponentFixture<DemoAppComponent>;
 
     beforeEach(async () => {
-      fixture = TestBed.createComponent(AppComponent);
+      fixture = TestBed.createComponent(DemoAppComponent);
       app = fixture.componentInstance;
       harness = await TestbedHarnessEnvironment.harnessForFixture(fixture, DemoAppComponentHarness);
     });
@@ -49,3 +51,9 @@ describe('demo app component', () => {
     });
   });
 });
+
+@Component({
+  selector: 'demo-app-navigation',
+  template: 'demo-app-navigation'
+})
+class StubbedNavigationComponent {}

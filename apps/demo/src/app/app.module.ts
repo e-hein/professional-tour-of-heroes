@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { DemoAppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    DemoAppComponent,
     NavigationComponent
   ],
   imports: [
@@ -15,6 +15,6 @@ import { NavigationComponent } from './navigation/navigation.component';
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [DemoAppComponent]
 })
 export class AppModule { }

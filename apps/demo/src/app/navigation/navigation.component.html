@@ -1,1 +1,8 @@
-<p>navigation works!</p>
+<ul>
+  <li *ngFor="let route of routes; trackBy: trackByPath">
+    <a [routerLink]="route.path" [title]="route.path" [ngClass]="{
+      'is-active': route.isActive
+    }">{{route.title}}</a>
+    <demo-app-navigation [routes]="route.children" *ngIf="route.isActive && route.children?.length > 0"></demo-app-navigation>
+  </li>
+</ul>
