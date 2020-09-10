@@ -28,12 +28,12 @@ describe('demo app component', () => {
       harness = await TestbedHarnessEnvironment.harnessForFixture(fixture, DemoAppComponentHarness);
     });
 
-    it(`should have as title 'demo'`, () => {
-      expect(app.title).toEqual('demo');
+    it(`should have as title 'demo of @company libraries'`, () => {
+      expect(app.title).toEqual('demo of @company libraries');
     });
 
     it('should render title', async () => {
-      expect(await harness.getTitleText()).toContain('demo app is running!');
+      expect(await harness.getTitleText()).toBe(app.title);
     });
   });
 });

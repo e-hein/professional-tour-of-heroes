@@ -1,4 +1,4 @@
-import { SharedSpecContext } from '@company/core/testing';
+import { SharedSpecContext, CoreComponentHarness } from '@company/core/testing';
 import { DemoAppComponentHarness } from './demo-app.component-harness';
 
 export function runAcceptanceTests(
@@ -16,6 +16,10 @@ export function runAcceptanceTests(
   });
 
   it('should display welcome message', async () => {
-    expect(await app.getTitleText()).toEqual('demo app is running!');
+    expect(await app.getTitleText()).toEqual('demo of @company libraries');
+  });
+
+  xit('should contain demo of core component', async () => {
+    expect(await context.loader().getHarness(CoreComponentHarness)).toBeTruthy();
   });
 }
