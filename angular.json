@@ -277,6 +277,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "./",
               "fileReplacements": [
                 {
                   "replace": "apps/demo/src/environments/environment.ts",
