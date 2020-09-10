@@ -1,12 +1,13 @@
 import { expectThatThereAreNoErrorsEmittedFromTheBrowser, navigateToRootPage, checkScreen } from '@company/core/testing/protractor';
-import { AppPage } from './app.po';
+import { DemoAppComponentHarness } from '@demo-app/testing';
+import { ProtractorHarnessEnvironment } from '@angular/cdk/testing/protractor';
 
 describe('demo app', () => {
-  let app: AppPage;
+  let app: DemoAppComponentHarness;
 
   beforeAll(async () => {
-    app = new AppPage();
     await navigateToRootPage();
+    app = await ProtractorHarnessEnvironment.loader().getHarness(DemoAppComponentHarness);
   });
 
   it('should match spec shot', async () => {
