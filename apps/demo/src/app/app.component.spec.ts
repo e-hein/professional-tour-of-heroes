@@ -1,35 +1,38 @@
-import { TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { itShouldCreateComponent } from '@company/core/testing/testbed';
 import { AppComponent } from './app.component';
 
-describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
+describe('demo app component', () => {
+  beforeEach(async () => TestBed.configureTestingModule({
+    imports: [
+      RouterTestingModule
+    ],
+    declarations: [
+      AppComponent
+    ],
+  }).compileComponents());
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  itShouldCreateComponent(AppComponent);
 
-  it(`should have as title 'demo'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('demo');
-  });
+  describe('created', () => {
+    let app: AppComponent;
+    let fixture: ComponentFixture<AppComponent>;
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('demo app is running!');
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(AppComponent);
+      app = fixture.componentInstance;
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+    });
+
+    it(`should have as title 'demo'`, () => {
+      expect(app.title).toEqual('demo');
+    });
+
+    it('should render title', () => {
+      expect(fixture.nativeElement.querySelector('.content span').textContent).toContain('demo app is running!');
+    });
   });
 });
