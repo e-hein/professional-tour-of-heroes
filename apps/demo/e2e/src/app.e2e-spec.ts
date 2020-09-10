@@ -1,24 +1,19 @@
-import { expectThatThereAreNoErrorsEmittedFromTheBrowser, navigateToRootPage, checkScreen } from '@company/core/testing/protractor';
-import { DemoAppComponentHarness } from '@demo-app/testing';
 import { ProtractorHarnessEnvironment } from '@angular/cdk/testing/protractor';
+import { expectThatThereAreNoErrorsEmittedFromTheBrowser, navigateToRootPage, ProtractorSpecContext } from '@company/core/testing/protractor';
+import { DemoAppComponentHarness, runAcceptanceTests } from '@demo-app/testing';
 
 describe('demo app', () => {
-  let app: DemoAppComponentHarness;
+  beforeAll(() => navigateToRootPage());
 
-  beforeAll(async () => {
-    await navigateToRootPage();
-    app = await ProtractorHarnessEnvironment.loader().getHarness(DemoAppComponentHarness);
-  });
-
-  it('should match spec shot', async () => {
-    expect(checkScreen('welcome-page')).toBeLessThan(1);
-  });
-
-  it('should display welcome message', () => {
-    expect(app.getTitleText()).toEqual('demo app is running!');
+  describe('acceptance test', () => {
+    runAcceptanceTests(
+      new ProtractorSpecContext(),
+      () => ProtractorHarnessEnvironment.loader().getHarness(DemoAppComponentHarness),
+    );
   });
 
   afterEach(async () => {
     await expectThatThereAreNoErrorsEmittedFromTheBrowser();
   });
 });
+
