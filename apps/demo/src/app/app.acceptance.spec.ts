@@ -1,18 +1,23 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { TestBed } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { TestbedSpecContext } from '@company/core/testing/testbed';
 import { DemoAppComponentHarness, runAcceptanceTests } from '@demo-app/testing';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 
 describe('demo app acceptance', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [AppModule],
-  }).compileComponents());
+  let fixture: ComponentFixture<AppComponent>;
+  const context = new TestbedSpecContext(() => fixture);
+  let harness: DemoAppComponentHarness;
 
-  runAcceptanceTests(new TestbedSpecContext(), async () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const harness = await TestbedHarnessEnvironment.harnessForFixture(fixture, DemoAppComponentHarness);
-    return harness;
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AppModule],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    harness = await TestbedHarnessEnvironment.harnessForFixture(fixture, DemoAppComponentHarness);
   });
+
+  runAcceptanceTests(context, () => Promise.resolve(harness));
 });
