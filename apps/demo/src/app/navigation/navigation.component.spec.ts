@@ -5,7 +5,6 @@ import { Component, NgModule, NgZone } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 import { DescribedRoute } from '@company/core';
 import { itShouldCreateComponent } from '@company/core/testing/testbed';
 import { DemoNavigationComponentHarness, DemoNavigationLinkHarness } from '@demo-app/testing';
@@ -16,7 +15,7 @@ describe('demo app navigation component', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [
       CommonModule,
-      RouterTestingModule.withRoutes([
+      RouterModule.forRoot([
         { title: 'example 1', path: 'stub-1', component: Stub1Component },
         { path: 'stub-2', children: [
           { path: '', component: Stub2Component },

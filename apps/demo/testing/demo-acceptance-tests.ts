@@ -1,5 +1,6 @@
 import { SharedSpecContext, CoreComponentHarness } from '@company/core/testing';
 import { DemoAppComponentHarness } from './demo-app.component-harness';
+import { DemoAppWelcomePageComponentHarness } from './demo-app-welcome-page.component-harness';
 
 export function runAcceptanceTests(
   context: SharedSpecContext,
@@ -15,11 +16,21 @@ export function runAcceptanceTests(
     expect(await context.checkScreen('welcome-page')).toBeLessThan(1);
   });
 
-  it('should display welcome message', async () => {
-    expect(await app.getTitleText()).toEqual('demo of @company libraries');
+  it('should app title containing demo', async () => {
+    expect(await app.getTitleText()).toContain('demo');
   });
 
-  xit('should contain demo of core component', async () => {
-    expect(await context.loader().getHarness(CoreComponentHarness)).toBeTruthy();
+  it('should display welcome text', async () => {
+    const welcomePage = await context.loader().getHarness(DemoAppWelcomePageComponentHarness);
+    expect(await welcomePage.getTitleText()).toContain('welcome');
+  });
+
+  it('should contain demo of core component', async () => {
+    const navigation = await app.getNavigation();
+    const coreLink = await navigation.getNavigationLink({ text: 'core'});
+    await coreLink.click();
+    const coreComponent = await context.loader().getHarness(CoreComponentHarness);
+
+    expect(await coreComponent.text()).toContain('@company/core');
   });
 }

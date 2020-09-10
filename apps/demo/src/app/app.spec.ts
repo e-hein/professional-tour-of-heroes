@@ -1,21 +1,30 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { APP_BASE_HREF } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
+import { Router, RouterModule } from '@angular/router';
 import { DemoAppComponentHarness, DemoNavigationComponentHarness, DemoNavigationLinkHarness } from '@demo-app/testing';
 import { DemoAppComponent } from './app.component';
 import { AppModule } from './app.module';
+import { demoAppPagesRoutes } from './pages';
 
 describe('demo app', () => {
   let demoApp: DemoAppComponentHarness;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppModule],
+      imports: [
+        AppModule,
+        RouterModule.forRoot(demoAppPagesRoutes),
+      ],
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' },
       ],
     }).compileComponents();
     const fixture = TestBed.createComponent(DemoAppComponent);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    await fixture.ngZone.run(() => fixture.debugElement.injector.get(Router).navigateByUrl('/'));
+
     demoApp = await TestbedHarnessEnvironment.harnessForFixture(fixture, DemoAppComponentHarness);
   });
 

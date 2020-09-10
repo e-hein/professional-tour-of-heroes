@@ -1,25 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { itShouldCreateComponent } from '@company/core/testing/testbed';
 import { WelcomePageComponent } from './welcome-page.component';
+import { DemoAppWelcomePageComponentHarness } from 'apps/demo/testing/demo-app-welcome-page.component-harness';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 
-describe('WelcomePageComponent', () => {
-  let component: WelcomePageComponent;
-  let fixture: ComponentFixture<WelcomePageComponent>;
+describe('demo app welcome page component', () => {
+  beforeEach(async () => TestBed.configureTestingModule({
+    declarations: [ WelcomePageComponent ]
+  }).compileComponents());
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WelcomePageComponent ]
-    })
-    .compileComponents();
-  }));
+  itShouldCreateComponent(WelcomePageComponent);
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(WelcomePageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  describe('started', () => {
+    let harness: DemoAppWelcomePageComponentHarness;
+    let fixture: ComponentFixture<WelcomePageComponent>;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(WelcomePageComponent);
+      harness = await TestbedHarnessEnvironment.harnessForFixture(fixture, DemoAppWelcomePageComponentHarness);
+    });
+
+    it ('should render title', async () => {
+      expect(await harness.getTitleText()).toContain('welcome');
+    });
   });
 });
