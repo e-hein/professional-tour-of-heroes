@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { itShouldCreateComponent } from '@company/core/testing/testbed';
 import { AppComponent } from './app.component';
-import { DemoAppComponentHarness } from '@demo-app/testing';
+import { DemoAppComponentHarness, DemoNavigationComponentHarness } from '@demo-app/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 
 describe('demo app component', () => {
@@ -34,6 +34,18 @@ describe('demo app component', () => {
 
     it('should render title', async () => {
       expect(await harness.getTitleText()).toBe(app.title);
+    });
+
+    describe('navigation', () => {
+      let navigation: DemoNavigationComponentHarness;
+
+      beforeEach(async () => {
+        navigation = await harness.getNavigation();
+      });
+
+      it('should be present', () => {
+        expect(navigation).toBeTruthy();
+      });
     });
   });
 });
