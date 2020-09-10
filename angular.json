@@ -255,7 +255,7 @@
       },
       "root": "apps/demo",
       "sourceRoot": "apps/demo/src",
-      "prefix": "app",
+      "prefix": "demo-app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
