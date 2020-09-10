@@ -278,6 +278,7 @@
           "configurations": {
             "production": {
               "baseHref": "./",
+              "tsConfig": "apps/demo/tsconfig.app.prod.json",
               "fileReplacements": [
                 {
                   "replace": "apps/demo/src/environments/environment.ts",

@@ -41,6 +41,9 @@
       "path": "./apps/demo/tsconfig.app.json"
     },
     {
+      "path": "./apps/demo/tsconfig.app.prod.json"
+    },
+    {
       "path": "./apps/demo/tsconfig.spec.json"
     }
 ]
