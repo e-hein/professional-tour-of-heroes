@@ -12,11 +12,11 @@ export function runAcceptanceTests(
     app = await getApp();
   });
 
-  it('should match spec shot', async () => {
+  it(`'welcome-page' should match spec shot`, async () => {
     expect(await context.checkScreen('welcome-page')).toBeLessThan(1);
   });
 
-  it('should app title containing demo', async () => {
+  it(`app title should contain text 'demo'`, async () => {
     expect(await app.getTitleText()).toContain('demo');
   });
 
@@ -25,12 +25,22 @@ export function runAcceptanceTests(
     expect(await welcomePage.getTitleText()).toContain('welcome');
   });
 
-  it('should contain demo of core component', async () => {
-    const navigation = await app.getNavigation();
-    const coreLink = await navigation.getNavigationLink({ text: 'core'});
-    await coreLink.click();
-    const coreComponent = await context.loader().getHarness(CoreComponentHarness);
+  describe('demo of core library', () => {
+    let coreComponent: CoreComponentHarness;
 
-    expect(await coreComponent.text()).toContain('@company/core');
+    context.before(async () => {
+      const navigation = await app.getNavigation();
+      const coreLink = await navigation.getNavigationLink({ text: 'core'});
+      await coreLink.click();
+      coreComponent = await context.loader().getHarness(CoreComponentHarness);
+    });
+
+    it(`should contain text '@company/core'`, async () => {
+      expect(await coreComponent.text()).toContain('@company/core');
+    });
+
+    it(`should match spec shot 'core-example'`, async () => {
+      expect(await context.checkScreen('core-example')).toBeLessThan(1);
+    });
   });
 }

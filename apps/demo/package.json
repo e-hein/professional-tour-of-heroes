@@ -9,12 +9,14 @@
     "test": "ng test demo",
     "lint": "ng lint demo",
     "coverage": "ng test demo --code-coverage --watch false",
+    "postcoverage": "npm run combine:coverage",
+    "combine:coverage": "node ../../scripts/combine-coverage.js",
     "update-webdriver": "node ../../node_modules/protractor/node_modules/webdriver-manager update --standalone false --gecko false",
     "e2e": "ng e2e demo --webdriver-update false",
     "protractor": "protractor e2e/protractor.conf.js",
     "protractor:dist": "protractor e2e/protractor.dist.js",
     "protractor_watch": "watch-npm protractor",
-    "serve:dist": "http-server ../../dist"
+    "serve:dist": "http-server ../../dist/apps"
   },
   "watch": {
     "protractor": {
