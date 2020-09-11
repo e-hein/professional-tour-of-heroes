@@ -1,0 +1,43 @@
+{
+  "name": "ptoh-web",
+  "version": "0.0.0",
+  "description": "professional tour of heroes (web app)",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve ptoh-web",
+    "build": "ng build ptoh-web --prod",
+    "test": "ng test ptoh-web",
+    "lint": "ng lint ptoh-web",
+    "coverage": "ng test ptoh-web --code-coverage --watch false",
+    "combine:coverage": "node ../../scripts/combine-coverage.js",
+    "postcoverage": "npm run combine:coverage",
+    "update-webdriver": "node ../../node_modules/protractor/node_modules/webdriver-manager update --standalone false --gecko false",
+    "e2e": "ng e2e ptoh-web --webdriver-update false",
+    "protractor": "protractor e2e/protractor.conf.js",
+    "protractor:dist": "protractor e2e/protractor.dist.js",
+    "protractor_watch": "watch-npm protractor",
+    "serve:dist": "http-server ../../dist/apps"
+  },
+  "watch": {
+    "protractor": {
+      "patterns": [
+        "e2e/**/*.*",
+        "src/**/*.*",
+        "../../libs/**/*.ts",
+        "testing/**/*.*",
+        "!**/*.spec.ts"
+      ]
+    }
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/e-hein/professional-tour-of-heroes.git"
+  },
+  "author": "Emanuel Hein",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/e-hein/professional-tour-of-heroes/issues"
+  },
+  "homepage": "https://github.com/e-hein/professional-tour-of-heroes#readme"
+}

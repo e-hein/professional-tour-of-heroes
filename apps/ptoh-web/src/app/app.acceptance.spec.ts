@@ -1,7 +1,7 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppHarness, runAcceptanceTests } from '@app/testing';
 import { TestbedSpecContext } from '@company/core/testing/testbed';
+import { AppHarness, runAcceptanceTests } from '@ptoh-web/testing';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 

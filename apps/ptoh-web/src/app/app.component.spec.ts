@@ -1,6 +1,6 @@
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppHarness } from '@app/testing';
+import { AppHarness } from '@ptoh-web/testing';
 import { itShouldCreateComponent } from '@company/core/testing/testbed';
 import { CompanyHeroModule } from '@company/hero';
 import { HeroComponentHarness } from '@company/hero/testing';
