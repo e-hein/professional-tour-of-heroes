@@ -4,7 +4,8 @@
   "lib": {
     "entryFile": "index.ts",
     "umdModuleIds": {
-      "@company/core/testing": "@company/core/testing"
+      "@company/core/testing": "@company/core/testing",
+      "@company/hero/testing": "@company/hero/testing"
     }
   }
 }
