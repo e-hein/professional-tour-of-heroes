@@ -29,7 +29,8 @@ To rebuild a single project, use `ng build --prod {projectName e.g. @company/cor
 Once `npm run build` completed, you can `npm start` a local server with all [apps](#Apps) at http://localhost:8080
 
 ## Tests
-`npm test` will run all required tests for all projects. In detail it will run coverage, build, a local server, end-to-end tests and stop the local server.
+`npm test` will run all required tests for all projects. In detail it will run coverage, prod build, a local server, end-to-end tests and stop the local server.  
+> **windows:** because windows does not always start the parallel process for the local server, it is necessary to have a running server in a different shell.
 
 ### Running unit tests
 `npm run test_watch` will start unit tests for the default app in watch mode.

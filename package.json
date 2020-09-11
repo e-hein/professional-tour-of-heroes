@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "shx": "shx",
     "start": "ng serve",
     "prebuild": "npm run clean:build",
     "build": "node scripts/ng-all.js ng build --prod",
@@ -18,9 +19,9 @@
     "protractor_watch": "watch-npm protractor",
     "protractor:dist": "protractor e2e/protractor.dist.js",
     "serve:dist": "http-server ./dist/apps",
-    "clean:build": "rm -rf dist",
-    "clean:coverage": "rm -rf coverage",
-    "clean:spec-shots": "rm -rf ./spec-shots/local"
+    "clean:build": "shx rm -rf dist",
+    "clean:coverage": "shx rm -rf coverage",
+    "clean:spec-shots": "shx rm -rf ./spec-shots/local"
   },
   "watch": {
     "protractor": {
@@ -70,6 +71,7 @@
     "nyc": "^15.1.0",
     "protractor": "~7.0.0",
     "protractor-image-comparison": "^3.9.0",
+    "shx": "^0.3.2",
     "ts-node": "~8.3.0",
     "tsconfig-paths": "^3.9.0",
     "tslint": "~6.1.0",
