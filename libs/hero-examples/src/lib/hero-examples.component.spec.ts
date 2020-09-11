@@ -1,25 +1,29 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { itShouldCreateComponent } from '@company/core/testing/testbed';
+import { HeroExamplesComponentHarness } from '@examples/hero/testing';
 import { HeroExamplesComponent } from './hero-examples.component';
 
 describe('company hero examples component', () => {
-  let component: HeroExamplesComponent;
-  let fixture: ComponentFixture<HeroExamplesComponent>;
+  beforeEach(() => TestBed.configureTestingModule({
+    declarations: [ HeroExamplesComponent ]
+  }).compileComponents());
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HeroExamplesComponent ]
-    })
-    .compileComponents();
-  }));
+  itShouldCreateComponent(HeroExamplesComponent);
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(HeroExamplesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  describe('created', () => {
+    let harness: HeroExamplesComponentHarness;
+    let component: HeroExamplesComponent;
+    let fixture: ComponentFixture<HeroExamplesComponent>;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(HeroExamplesComponent);
+      component = fixture.componentInstance;
+      harness = await TestbedHarnessEnvironment.harnessForFixture(fixture, HeroExamplesComponentHarness);
+    });
+
+    it(`should contain text '@examples/hero'`, async () => {
+      expect(await harness.text()).toContain('@examples/hero');
+    });
   });
 });
