@@ -27,7 +27,8 @@ that reusable components and styles for the [apps](#Apps)
 To rebuild a single project, use `ng build --prod {projectName e.g. @company/core}`.
 
 ## Tests
-`npm test` will run all required tests for all projects. In detail it will run coverage, prod build, a local server, end-to-end tests and stop the local server.
+`npm test` will run all required tests for all projects. In detail it will run coverage, prod build, a local server, end-to-end tests and stop the local server.  
+> **windows:** because windows does not always start the parallel process for the local server, it is necessary to have a running server in a different shell.
 
 ### Running unit tests
 `npm run coverage` will start unit tests with code coverage for all [libraries](#Libraries) and [apps](#Apps) and generate a combined report in `./coverage/combined`.  

@@ -7,11 +7,19 @@ execSync('npm run coverage', { stdio: 'inherit' });
 execSync('npm run build', { stdio: 'inherit' });
 
 execSync('npm run clean:spec-shots');
-const server = spawn('npm', ['run', 'serve:dist'], { stdio: 'inherit' });
-try {
+function execProtractorDist() {
   execSync('npm run protractor:dist', { stdio: 'inherit' });
-} catch (e) {
-  server.kill('SIGTERM');
-  throw e;
 }
-server.kill('SIGTERM');
+
+if(process.platform === 'win32') {
+  execProtractorDist();
+} else {
+  const server = spawn('npm', ['run', 'serve:dist'], { stdio: 'inherit' });
+  try {
+    execProtractorDist();
+  } catch (e) {
+    server.kill('SIGTERM');
+    throw e;
+  }
+  server.kill('SIGTERM');
+}
