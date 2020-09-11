@@ -370,11 +370,11 @@
         }
       }
     },
-    "hero-examples": {
+    "@examples/hero": {
       "projectType": "library",
       "root": "libs/hero-examples",
       "sourceRoot": "libs/hero-examples/src",
-      "prefix": "lib",
+      "prefix": "hero-examples",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

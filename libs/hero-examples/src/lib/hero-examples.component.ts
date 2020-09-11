@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lib-hero-examples',
+  selector: 'hero-examples',
   template: `
     <p>
-      hero-examples works!
+      @examples/hero works!
     </p>
   `,
   styles: [
