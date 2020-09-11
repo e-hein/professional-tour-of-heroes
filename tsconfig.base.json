@@ -32,6 +32,10 @@
       ],
       "@demo-app/testing": [
         "apps/demo/testing"
+      ],
+      "hero-examples": [
+        "dist/hero-examples/hero-examples",
+        "dist/hero-examples"
       ]
     }
   }
