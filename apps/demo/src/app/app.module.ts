@@ -13,7 +13,11 @@ export const demoAppRoutes: Routes = [
   {
     path: 'core',
     loadChildren: () => import('@examples/core').then((coreExamples) => coreExamples.CoreExamplesModule),
-  }
+  },
+  {
+    path: 'hero',
+    loadChildren: () => import('@examples/hero').then((heroExamples) => heroExamples.HeroExamplesModule),
+  },
 ];
 
 @NgModule({
