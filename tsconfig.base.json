@@ -29,6 +29,9 @@
       ],
       "@app/testing": [
         "testing"
+      ],
+      "@demo-app/testing": [
+        "apps/demo/testing"
       ]
     }
   }

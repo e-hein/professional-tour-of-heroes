@@ -1,0 +1,41 @@
+{
+  "name": "demo",
+  "version": "0.0.0",
+  "description": "demo of @company libraries",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve demo",
+    "build": "ng build demo --prod",
+    "test": "ng test demo",
+    "lint": "ng lint demo",
+    "coverage": "ng test demo --code-coverage --watch false",
+    "update-webdriver": "node ../../node_modules/protractor/node_modules/webdriver-manager update --standalone false --gecko false",
+    "e2e": "ng e2e demo --webdriver-update false",
+    "protractor": "protractor e2e/protractor.conf.js",
+    "protractor:dist": "protractor e2e/protractor.dist.js",
+    "protractor_watch": "watch-npm protractor",
+    "serve:dist": "http-server ../../dist"
+  },
+  "watch": {
+    "protractor": {
+      "patterns": [
+        "e2e/**/*.*",
+        "src/**/*.*",
+        "../../libs/**/*.ts",
+        "testing/**/*.*",
+        "!**/*.spec.ts"
+      ]
+    }
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/e-hein/professional-tour-of-heroes.git"
+  },
+  "author": "Emanuel Hein",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/e-hein/professional-tour-of-heroes/issues"
+  },
+  "homepage": "https://github.com/e-hein/professional-tour-of-heroes#readme"
+}

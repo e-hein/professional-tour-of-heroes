@@ -10,6 +10,7 @@ const buildOrder = [
   '@company/hero',
   'professional-tour-of-heroes',
   '@examples/core',
+  'demo',
 ];
 
 module.exports = buildOrder;

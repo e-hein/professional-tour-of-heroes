@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "paths": {
+      "@company/*": ["dist/company/*"],
+      "@examples/*": ["dist/examples/*"]
+    }
+  }
+}
