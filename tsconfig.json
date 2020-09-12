@@ -12,6 +12,12 @@
     },
     {
       "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/hero/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/hero/tsconfig.spec.json"
     }
 ]
 }

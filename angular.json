@@ -123,6 +123,46 @@
           }
         }
       }
+    },
+    "@company/hero": {
+      "projectType": "library",
+      "root": "libs/hero",
+      "sourceRoot": "libs/hero/src",
+      "prefix": "company-hero",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/hero/tsconfig.lib.json",
+            "project": "libs/hero/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/hero/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/hero/src/test.ts",
+            "tsConfig": "libs/hero/tsconfig.spec.json",
+            "karmaConfig": "libs/hero/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/hero/tsconfig.lib.json",
+              "libs/hero/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "professional-tour-of-heroes",
