@@ -1,42 +1,31 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CompanyHeroComponent } from './hero.component';
 import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { CompanyCoreModule } from '@company/core';
+import { itShouldCreateComponent } from '@company/core/testing/testbed';
+import { CompanyHeroComponent } from './hero.component';
 
 describe('company hero component', () => {
-  let component: CompanyHeroComponent;
-  let fixture: ComponentFixture<CompanyHeroComponent>;
-
   beforeEach(() => TestBed.configureTestingModule({
+    imports: [ CompanyCoreModule ],
     declarations: [
       HeroEditorStubComponent,
       CompanyHeroComponent,
-    ]
+    ],
   }).compileComponents());
 
-  function startComponent(): Promise<void> {
-    fixture = TestBed.createComponent(CompanyHeroComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-    return fixture.whenStable();
-  }
+  itShouldCreateComponent(CompanyHeroComponent);
 
-  it('should create without throwing errors', async () => {
-    const origConsoleError = console.error;
-    const errorSpy = jasmine.createSpy('error').and.callThrough();
-    console.error = errorSpy;
+  describe('created', () => {
+    let component: CompanyHeroComponent;
+    let fixture: ComponentFixture<CompanyHeroComponent>;
 
-    try {
-      await startComponent();
-    } finally {
-      console.error = origConsoleError;
-    }
-
-    expect(errorSpy).not.toHaveBeenCalled();
-  });
-
-  describe('started', () => {
-    beforeEach(() => startComponent());
+    beforeEach(async () => {
+      fixture = TestBed.createComponent(CompanyHeroComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+      await fixture.whenStable();
+    });
 
     it('should show the hero editor', () => {
       expect(fixture.debugElement.query(By.directive(HeroEditorStubComponent))).toBeTruthy();

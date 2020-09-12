@@ -18,6 +18,18 @@
     },
     {
       "path": "./libs/hero/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/core/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/core/tsconfig.spec.json"
+    },
+    {
+      "path": "./libs/core/testing/protractor/tsconfig.json"
+    },
+    {
+      "path": "./libs/core/testing/testbed/tsconfig.json"
     }
 ]
 }

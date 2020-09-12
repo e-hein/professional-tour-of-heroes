@@ -1,23 +1,44 @@
-import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
+import { checkScreen, expectThatThereAreNoErrorsEmittedFromTheBrowser, navigateToRootPage, CoreCo } from '@company/core/testing/protractor';
+import { HeroCo } from '@company/hero/testing/protractor';
+import { AppPage } from '@app/testing/protractor';
 
 describe('professional tour of heroes', () => {
-  let page: AppPage;
+  let appPage: AppPage;
 
-  beforeEach(() => {
-    page = new AppPage();
+  beforeAll(async () => {
+    await navigateToRootPage();
+    appPage = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('Professional Tour Of Heroes');
+  it('should match spec shot', async () => {
+    expect(await checkScreen('welcome-page')).toBeLessThan(1);
+  });
+
+  it('should display welcome message', async () => {
+    expect(await appPage.getTitleText()).toEqual('The Professional Tour Of Heroes');
+  });
+
+  it('should contain the hero component', async () => {
+    expect(await appPage.getHeroComponent()).toBeTruthy();
+  });
+
+  describe('hero component', () => {
+    let heroComponent: HeroCo;
+
+    beforeAll(() => {
+      heroComponent = appPage.getHeroComponent();
+    });
+
+    it('should be displayed', async () => {
+      expect(await heroComponent.isDisplayed()).toBe(true);
+    });
+
+    it(`should contain text 'WINDSTORM Details'`, async () => {
+      expect(await heroComponent.text()).toContain('WINDSTORM Details');
+    });
   });
 
   afterEach(async () => {
-    // Assert that there are no errors emitted from the browser
-    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
+    await expectThatThereAreNoErrorsEmittedFromTheBrowser();
   });
 });
