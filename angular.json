@@ -369,6 +369,46 @@
           }
         }
       }
+    },
+    "@examples/hero": {
+      "projectType": "library",
+      "root": "libs/hero-examples",
+      "sourceRoot": "libs/hero-examples/src",
+      "prefix": "hero-examples",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/hero-examples/tsconfig.lib.json",
+            "project": "libs/hero-examples/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/hero-examples/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/hero-examples/src/test.ts",
+            "tsConfig": "libs/hero-examples/tsconfig.spec.json",
+            "karmaConfig": "libs/hero-examples/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/hero-examples/tsconfig.lib.json",
+              "libs/hero-examples/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

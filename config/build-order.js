@@ -10,6 +10,7 @@ const buildOrder = [
   '@company/hero',
   'ptoh-web',
   '@examples/core',
+  '@examples/hero',
   'demo',
 ];
 

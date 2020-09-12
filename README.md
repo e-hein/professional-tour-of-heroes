@@ -7,17 +7,22 @@ After checkout you have to run `npm install`.
 ## Project contents
 ### Apps
 that can get deployed as static web pages
-- [ptoh-web](./apps/ptoh-web) The Professional Tour Of Heroes (web-app)
-- [demo](./apps/demo) demo app that shows library contents
+
+* [ptoh-web](./apps/ptoh-web): The Professional Tour Of Heroes (web-app)  
+* [demo](./apps/demo): A demo application that shows and explains library contents
 
 ### Libraries
-that reusable components and styles for the [apps](#Apps)
-- [@company/core](./libs/core) base components, services and utils, that are not associated with the hero context.
-- [@examples/core](./libs/core-examples) isolated examples, demos and further documentation for the core library
-- [@company/hero](./libs/hero) special components, services and utils for the hero context.
+that provide reusable components and styles for the [apps](#Apps)
+
+* [@company/core](./libs/core)  
+  Core components, services and utils, that will be reused in other libraries.  
+  Isolated examples, demos and further documentation for the core library can be found in [@examples/core](./libs/core-examples).
+
+* [@company/hero](./libs/hero)  
+  Special components, services and utils for the hero context.  
+  Isolated examples, demos and further documentation for the hero library can be found in [@examples/hero](./libs/hero-examples)
 
 ## Local server
-
 `npm start` builds all [apps](#Apps) and starts a local server at http://localhost:8080
 `npm run serve:dist` starts the server without build
 
@@ -32,7 +37,7 @@ To rebuild a single project, use `ng build --prod {projectName e.g. @company/cor
 
 ### Running unit tests
 `npm run coverage` will start unit tests with code coverage for all [libraries](#Libraries) and [apps](#Apps) and generate a combined report in `./coverage/combined`.  
-`npm run clean:coverage` will git triggert automatically before coverage, so old coverage results will get removed before.  
+`npm run clean:coverage` will get triggert automatically before coverage, so old coverage results will get removed before.  
 To start watching test for a single project, use `ng test {projectName e.g. @company/core}`.
 
 ### Running end-to-end tests

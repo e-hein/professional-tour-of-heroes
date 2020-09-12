@@ -1,4 +1,5 @@
 import { SharedSpecContext, CoreComponentHarness } from '@company/core/testing';
+import { HeroComponentHarness } from '@company/hero/testing';
 import { DemoAppComponentHarness } from './demo-app.component-harness';
 import { DemoAppWelcomePageComponentHarness } from './demo-app-welcome-page.component-harness';
 
@@ -41,6 +42,25 @@ export function runAcceptanceTests(
 
     it(`should match spec shot 'core-example'`, async () => {
       expect(await context.checkScreen('core-example')).toBeLessThan(1);
+    });
+  });
+
+  describe('demo of hero library', () => {
+    let heroComponent: HeroComponentHarness;
+
+    context.before(async () => {
+      const navigation = await app.getNavigation();
+      const heroLink = await navigation.getNavigationLink({ text: 'hero'});
+      await heroLink.click();
+      heroComponent = await context.loader().getHarness(HeroComponentHarness);
+    });
+
+    it(`should contain text '@company/hero'`, async () => {
+      expect(await heroComponent.text()).toContain('@company/hero');
+    });
+
+    it(`should match spec shot 'hero-example'`, async () => {
+      expect(await context.checkScreen('hero-example')).toBeLessThan(1);
     });
   });
 }
