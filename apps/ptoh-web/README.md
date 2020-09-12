@@ -5,7 +5,7 @@ After checkout you have to run `npm install`.
 
 ## Development server
 
-Run `npm start` for a dev server. Navigate to `http://localhost:4500/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -13,15 +13,16 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-`npm run build` to build the project. The build artifacts will be stored in the `../../dist/apps/demo` directory. Builds will always use the prod flag, there's no usecase for dev-builds except in dev server (`npm start`).
+`npm run build` to build the project. The build artifacts will be stored in the `../../dist/apps/ptoh-web` directory. Builds will always use the prod flag, there's no usecase for dev-builds except in dev server (`npm start`).
 
-After build you can start the app at http://localhost:8080/demo by `npm run serve:dist`.
+After build you can start the app at http://localhost:8080/ptoh-web by `npm run serve:dist`.
 
 ## Running unit tests
 
 * `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-* `npm run coverage` to run unit tests with json coverage output to `../../coverage/project/demo` folder (which is part of .gitignore).
+* `npm run coverage` to run unit tests with json coverage output to the `../../coverage/project/ptoh-web` folder (which is part of .gitignore).
 * `npm run combine:coverage` will run automatically after coverage and generate a combined html coverage report for this repo in `../../coverage/combined`.
+
 
 ## Running end-to-end tests
 

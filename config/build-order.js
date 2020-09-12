@@ -8,7 +8,7 @@
 const buildOrder = [
   '@company/core',
   '@company/hero',
-  'professional-tour-of-heroes',
+  'ptoh-web',
   '@examples/core',
   'demo',
 ];

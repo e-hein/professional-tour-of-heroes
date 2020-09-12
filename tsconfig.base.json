@@ -27,8 +27,8 @@
         "libs/*-examples",
         "libs/*-examples/src/public-api.ts"
       ],
-      "@app/testing": [
-        "testing"
+      "@ptoh-web/testing": [
+        "apps/ptoh-web/testing"
       ],
       "@demo-app/testing": [
         "apps/demo/testing"
