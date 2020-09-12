@@ -7,6 +7,11 @@
  * module.exports = require('../../config/karma')(require('./project-info')).useDefaultConfig
  * ```
  *
+ * example using debugConfig:
+ * ```js
+ * module.exports = require('../../config/karma')(require('./project-info')).useDebugConfig
+ * ```
+ *
  * example skipping coverage:
  * ```js
  * const { setBaseOptions, launchChrome } = require('./config/karma')(require('./project-info'));
@@ -22,10 +27,17 @@ function createKarmaConfigf(projectInfo) {
   return {
     setBaseOptions: require('./set-base-options').setBaseOptions,
     addCoverage: require('./add-coverage').addCoverage(projectInfo.name),
-    launchChrome: require('./launch-chrome').launchChrome,
-    launchCromeHeadless: require('./launch-chrome-headless').launchChromeHeadless,
+    launch: {
+      chrome: require('./launch-chrome').launchChrome,
+      cromeHeadless: require('./launch-chrome-headless').launchChromeHeadless,
+    },
+    report: {
+      reportKarmaJasmineHtml: require('./report-kjhtml').reportKarmaJasmineHtml,
+      reportMochaStyle: require('./report-mocha').reportMochaStyle,
+    },
 
     useDefaultConfig: require('./default-config').useDefaultConfig(projectInfo),
+    useDebugConfig: require('./debug-config').useDebugConfig,
   }
 }
 

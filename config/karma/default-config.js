@@ -2,6 +2,7 @@
 const { setBaseOptions } = require('./set-base-options');
 const { addCoverage } = require('./add-coverage');
 const { reportMochaStyle } = require('./report-mocha');
+const { launchChromeHeadless } = require('./launch-chrome-headless');
 
 /**
  * create default config for most porjects
@@ -12,8 +13,7 @@ function useDefaultConfig(projectInfo) {
   return function (config) {
     setBaseOptions(config);
     reportMochaStyle(config);
-    require('./launch-chrome-headless').launchChromeHeadless(config);
-//    require('./launch-chrome').launchChrome(config);
+    launchChromeHeadless(config);
     addCoverage(projectInfo.name)(config);
   };
 }
