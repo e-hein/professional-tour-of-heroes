@@ -8,7 +8,8 @@
 const buildOrder = [
   '@company/core',
   '@company/hero',
-  'professional-tour-of-heroes'
+  'professional-tour-of-heroes',
+  '@examples/core',
 ];
 
 module.exports = buildOrder;

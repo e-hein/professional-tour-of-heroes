@@ -205,6 +205,46 @@
           }
         }
       }
+    },
+    "@examples/core": {
+      "projectType": "library",
+      "root": "libs/core-examples",
+      "sourceRoot": "libs/core-examples/src",
+      "prefix": "core-examples",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/core-examples/tsconfig.lib.json",
+            "project": "libs/core-examples/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/core-examples/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/core-examples/src/test.ts",
+            "tsConfig": "libs/core-examples/tsconfig.spec.json",
+            "karmaConfig": "libs/core-examples/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core-examples/tsconfig.lib.json",
+              "libs/core-examples/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "professional-tour-of-heroes",
