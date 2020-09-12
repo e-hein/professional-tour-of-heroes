@@ -8,12 +8,16 @@ const projectRoot = path.resolve(__dirname, '../../');
  * @param {string} projectName
  */
 function addCoverage(projectName) {
+  const projectFolderName = projectName.replace(/@(\w+)\//, (_all, scope) => scope + '-');
   return function (config) {
     config.plugins.push('karma-coverage-istanbul-reporter');
     config.set({
       coverageIstanbulReporter: {
-        dir: require('path').join(projectRoot, 'coverage', projectName),
-        reports: ['html', 'lcovonly', 'text-summary'],
+        dir: require('path').join(projectRoot, 'coverage/project'),
+        reports: ['json', 'text-summary'],
+        'report-config': {
+          json: { file: projectFolderName + '.json' }
+        },
         fixWebpackSourcePaths: true
       },
     });

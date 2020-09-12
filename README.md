@@ -33,7 +33,7 @@ Once `npm run build` completed, you can `npm start` a local server with all [app
 
 ### Running unit tests
 `npm run test_watch` will start unit tests for the default app in watch mode.
-`npm run coverage` will start unit tests with code coverage for all [libraries](#Libraries) and [apps](#Apps).  
+`npm run coverage` will start unit tests with code coverage for all [libraries](#Libraries) and [apps](#Apps) and generate a combined report in `./coverage/combined`.  
 `npm run clean:coverage` will git triggert automatically before coverage, so old coverage results will get removed before.  
 To start watching test for a single project, use `ng test {projectName e.g. @company/core}` (or `npm run test_watch` for the default app).
 
