@@ -4,20 +4,20 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Code scaffolding
 
-Run `ng generate component component-name --project hero` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project hero`.
-> Note: Don't forget to add `--project hero` or else it will be added to the default project in your `angular.json` file. 
+Run `ng generate component component-name --project @company/hero` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project hero`.
+> Note: Don't forget to add `--project @company/hero` or else it will be added to the default project in your `angular.json` file. 
 
 ## Build
 
-Run `ng build hero` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build @company/hero` to build the project. The build artifacts will be stored in the `../../dist/company/` directory.
 
 ## Publishing
 
-After building your library with `ng build hero`, go to the dist folder `cd dist/hero` and run `npm publish`.
+After building your library with `ng build @company/hero`, go to the dist folder `cd ../../dist/company/hero` and run `npm publish`.
 
 ## Running unit tests
 
-Run `ng test hero` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test @company/hero` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Further help
 
