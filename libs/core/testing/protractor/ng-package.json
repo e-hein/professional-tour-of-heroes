@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../../dist/company/core/testing/protractor",
+  "lib": {
+    "entryFile": "index.ts",
+    "umdModuleIds": {
+      "protractor": "protractor"
+    }
+  }
+}

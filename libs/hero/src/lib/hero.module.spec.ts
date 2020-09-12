@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CompanyCoreModule } from '@company/core';
-import { CompanyHeroComponent } from './hero.component';
+import { CompanyHeroComponent, CompanyHeroModule } from '../public-api';
 
-describe('company hero component', () => {
+describe('company hero module', () => {
   let component: CompanyHeroComponent;
   let fixture: ComponentFixture<CompanyHeroComponent>;
   let errorSpy: jasmine.Spy;
@@ -17,8 +16,7 @@ describe('company hero component', () => {
     cleanupTasks.push(() => console.error = origConsoleError);
 
     await TestBed.configureTestingModule({
-      imports: [ CompanyCoreModule ],
-      declarations: [ CompanyHeroComponent ]
+      imports: [ CompanyHeroModule ]
     })
     .compileComponents();
 
