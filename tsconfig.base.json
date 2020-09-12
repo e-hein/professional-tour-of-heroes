@@ -20,8 +20,8 @@
         "libs/*",
         "libs/*/src/public-api.ts"
       ],
-      "@app/testing/*": [
-        "testing/*"
+      "@app/testing": [
+        "testing"
       ]
     }
   }
