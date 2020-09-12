@@ -29,10 +29,6 @@
       ],
       "@app/testing": [
         "testing"
-      ],
-      "core-examples": [
-        "dist/core-examples/core-examples",
-        "dist/core-examples"
       ]
     }
   }

@@ -206,11 +206,11 @@
         }
       }
     },
-    "core-examples": {
+    "@examples/core": {
       "projectType": "library",
       "root": "libs/core-examples",
       "sourceRoot": "libs/core-examples/src",
-      "prefix": "lib",
+      "prefix": "core-examples",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

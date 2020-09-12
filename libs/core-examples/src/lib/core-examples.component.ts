@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lib-core-examples',
+  selector: 'core-examples',
   template: `
     <p>
-      core-examples works!
+      @examples/core works!
     </p>
   `,
   styles: [
