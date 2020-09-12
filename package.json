@@ -4,8 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
-    "test": "ng test",
+    "prebuild": "npm run clean:build",
+    "build": "node scripts/ng-all.js ng build --prod",
+    "test": "node scripts/required-tests.js",
+    "test_watch": "ng test",
     "lint": "ng lint",
     "coverage": "ng test --code-coverage --watch false",
     "update-webdriver": "node node_modules/protractor/node_modules/webdriver-manager update --standalone false --gecko false",
@@ -13,7 +15,10 @@
     "protractor": "protractor e2e/protractor.conf.js",
     "protractor_watch": "watch-npm protractor",
     "protractor:dist": "protractor e2e/protractor.dist.js",
-    "serve:dist": "http-server ./dist/apps"
+    "serve:dist": "http-server ./dist/apps",
+    "clean:build": "rm -rf dist",
+    "clean:coverage": "rm -rf coverage",
+    "clean:spec-shots": "rm -rf ./spec-shots/local"
   },
   "watch": {
     "protractor": {
