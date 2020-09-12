@@ -1,13 +1,17 @@
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { CompanyCoreComponent, CompanyCoreModule } from '@company/core';
+import { CompanyCoreModule } from '@company/core';
 import { itShouldCreateComponent } from '@company/core/testing/testbed';
 import { CompanyHeroComponent } from './hero.component';
 
 describe('company hero component', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [ CompanyCoreModule ],
-    declarations: [ CompanyHeroComponent ]
+    declarations: [
+      HeroEditorStubComponent,
+      CompanyHeroComponent,
+    ],
   }).compileComponents());
 
   itShouldCreateComponent(CompanyHeroComponent);
@@ -23,12 +27,14 @@ describe('company hero component', () => {
       await fixture.whenStable();
     });
 
-    it(`should contain text '@company/hero'`, () => {
-      expect(fixture.debugElement.nativeElement.textContent).toContain('@company/hero');
-    });
-
-    it('should contain a core component', () => {
-      expect(fixture.debugElement.query(By.directive(CompanyCoreComponent))).toBeTruthy();
+    it('should show the hero editor', () => {
+      expect(fixture.debugElement.query(By.directive(HeroEditorStubComponent))).toBeTruthy();
     });
   });
 });
+
+@Component({
+  selector: 'company-hero-editor',
+  template: 'company-hero-editor',
+})
+class HeroEditorStubComponent {}

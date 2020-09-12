@@ -1,7 +1,6 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { CompanyCoreComponent } from '@company/core';
 import { itShouldCreateComponent } from '@company/core/testing/testbed';
 import { CompanyHeroComponent, CompanyHeroModule } from '@company/hero';
 import { AppComponent } from './app.component';
@@ -40,10 +39,6 @@ describe('professional-tour-of-heroes app component', () => {
 
       it('should be present', () => {
         expect(heroComponent).toBeTruthy();
-      });
-
-      it('should contain core component', () => {
-        expect(heroComponent.query(By.directive(CompanyCoreComponent))).toBeTruthy();
       });
     });
   });

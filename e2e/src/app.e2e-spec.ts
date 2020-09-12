@@ -33,24 +33,8 @@ describe('professional tour of heroes', () => {
       expect(await heroComponent.isDisplayed()).toBe(true);
     });
 
-    it(`should contain text '@company/core'`, async () => {
-      expect(await heroComponent.text()).toContain('@company/hero');
-    });
-
-    describe('containing core component that', () => {
-      let coreComponent: CoreCo;
-
-      beforeAll(() => {
-        coreComponent = heroComponent.getCoreComponent();
-      });
-
-      it('should be displayed', async () => {
-        expect(await coreComponent.isDisplayed()).toBe(true);
-      });
-
-      it(`should contain text '@company/core'`, async () => {
-        expect(await coreComponent.text()).toContain('@company/core');
-      });
+    it(`should contain text 'WINDSTORM Details'`, async () => {
+      expect(await heroComponent.text()).toContain('WINDSTORM Details');
     });
   });
 
