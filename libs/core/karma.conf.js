@@ -1,2 +1,3 @@
 //@ts-check
-module.exports = require('../../karma.base.conf')(require('./project-info'));
+module.exports = require('../../config/karma')(require('./project-info')).useDefaultConfig
+// module.exports = require('./config/karma')(require('./project-info')).useDebugConfig

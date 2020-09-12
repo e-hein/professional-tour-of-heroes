@@ -36,7 +36,7 @@ describe('professional-tour-of-heroes app component', () => {
     expect(errorSpy).not.toHaveBeenCalled();
   });
 
-  it(`should have as title 'Professional Tour Of Heroes'`, () => {
-    expect(app.title).toEqual('Professional Tour Of Heroes');
+  it(`should have as title 'The Professional Tour Of Heroes'`, () => {
+    expect(app.title).toEqual('The Professional Tour Of Heroes');
   });
 });

@@ -1,6 +1,2 @@
-// @ts-check
-
-/**
- * @type { import("protractor").Config }
- */
-exports.config = require('../protractor.base.conf')(require('../project-info'));
+//@ts-check
+exports.config = require('../config/e2e')(require('../project-info')).useDefaultConfig;

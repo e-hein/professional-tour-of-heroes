@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/professional-tour-of-heroes",
+            "outputPath": "dist/apps/professional-tour-of-heroes",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -34,6 +34,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "./",
               "tsConfig": "tsconfig.app.prod.json",
               "fileReplacements": [
                 {

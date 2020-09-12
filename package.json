@@ -4,10 +4,31 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "prebuild": "npm run clean:build",
+    "build": "node scripts/ng-all.js ng build --prod",
+    "test": "node scripts/required-tests.js",
+    "test_watch": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "coverage": "ng test --code-coverage --watch false",
+    "postcoverage": "npm run combine:coverage",
+    "combine:coverage": "nyc -t coverage/project report --reporter=html --report-dir=coverage/combined",
+    "update-webdriver": "node node_modules/protractor/node_modules/webdriver-manager update --standalone false --gecko false",
+    "e2e": "ng e2e --webdriver-update false",
+    "protractor": "protractor e2e/protractor.conf.js",
+    "protractor_watch": "watch-npm protractor",
+    "protractor:dist": "protractor e2e/protractor.dist.js",
+    "serve:dist": "http-server ./dist/apps",
+    "clean:build": "rm -rf dist",
+    "clean:coverage": "rm -rf coverage",
+    "clean:spec-shots": "rm -rf ./spec-shots/local"
+  },
+  "watch": {
+    "protractor": {
+      "patterns": [
+        "e2e/**/*.*",
+        "src/**/*.*"
+      ]
+    }
   },
   "private": true,
   "dependencies": {
@@ -28,10 +49,11 @@
     "@angular-devkit/build-ng-packagr": "~0.1000.8",
     "@angular/cli": "~10.0.8",
     "@angular/compiler-cli": "~10.0.14",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "http-server": "^0.12.3",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
@@ -39,11 +61,15 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~3.3.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "karma-mocha-reporter": "^2.2.5",
     "ng-packagr": "^10.0.0",
+    "nyc": "^15.1.0",
     "protractor": "~7.0.0",
+    "protractor-image-comparison": "^3.9.0",
     "ts-node": "~8.3.0",
     "tsconfig-paths": "^3.9.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.9.5"
+    "typescript": "~3.9.5",
+    "watch-npm": "^1.0.1"
   }
 }
