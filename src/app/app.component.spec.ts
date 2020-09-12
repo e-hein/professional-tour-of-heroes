@@ -1,9 +1,9 @@
-import { DebugElement } from '@angular/core';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { CompanyCoreComponent } from '@company/core';
+import { AppHarness } from '@app/testing';
 import { itShouldCreateComponent } from '@company/core/testing/testbed';
-import { CompanyHeroComponent, CompanyHeroModule } from '@company/hero';
+import { CompanyHeroModule } from '@company/hero';
+import { HeroComponentHarness } from '@company/hero/testing';
 import { AppComponent } from './app.component';
 
 describe('professional-tour-of-heroes app component', () => {
@@ -19,31 +19,33 @@ describe('professional-tour-of-heroes app component', () => {
   itShouldCreateComponent(AppComponent);
 
   describe('created', () => {
-    let fixture: ComponentFixture<AppComponent>;
+    let harness: AppHarness;
     let app: AppComponent;
+    let fixture: ComponentFixture<AppComponent>;
 
-    beforeEach(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(AppComponent);
       app = fixture.componentInstance;
+      harness = await TestbedHarnessEnvironment.harnessForFixture(fixture, AppHarness);
     });
 
-    it(`should have as title 'The Professional Tour Of Heroes'`, () => {
-      expect(app.title).toEqual('The Professional Tour Of Heroes');
+    it(`should have as title 'The Professional Tour Of Heroes'`, async () => {
+      expect(await harness.getTitleText()).toEqual('The Professional Tour Of Heroes');
     });
 
     describe('hero component', () => {
-      let heroComponent: DebugElement;
+      let heroComponent: HeroComponentHarness;
 
-      beforeEach(() => {
-        heroComponent = fixture.debugElement.query(By.directive(CompanyHeroComponent));
+      beforeEach(async () => {
+        heroComponent = await harness.getHeroComponent();
       });
 
-      it('should be present', () => {
-        expect(heroComponent).toBeTruthy();
+      it('should be present', async () => {
+        expect(await heroComponent.isDisplayed()).toBe(true);
       });
 
-      it('should contain core component', () => {
-        expect(heroComponent.query(By.directive(CompanyCoreComponent))).toBeTruthy();
+      it('should contain core component', async () => {
+        expect(await heroComponent.getCoreComponent()).toBeTruthy();
       });
     });
   });

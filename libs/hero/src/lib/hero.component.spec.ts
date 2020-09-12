@@ -1,7 +1,8 @@
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { CompanyCoreComponent, CompanyCoreModule } from '@company/core';
+import { CompanyCoreModule } from '@company/core';
 import { itShouldCreateComponent } from '@company/core/testing/testbed';
+import { HeroComponentHarness } from '@company/hero/testing';
 import { CompanyHeroComponent } from './hero.component';
 
 describe('company hero component', () => {
@@ -13,22 +14,22 @@ describe('company hero component', () => {
   itShouldCreateComponent(CompanyHeroComponent);
 
   describe('created', () => {
+    let harness: HeroComponentHarness;
     let component: CompanyHeroComponent;
     let fixture: ComponentFixture<CompanyHeroComponent>;
 
     beforeEach(async () => {
       fixture = TestBed.createComponent(CompanyHeroComponent);
       component = fixture.componentInstance;
-      fixture.detectChanges();
-      await fixture.whenStable();
+      harness = await TestbedHarnessEnvironment.harnessForFixture(fixture, HeroComponentHarness);
     });
 
-    it(`should contain text '@company/hero'`, () => {
-      expect(fixture.debugElement.nativeElement.textContent).toContain('@company/hero');
+    it(`should contain text '@company/hero'`, async () => {
+      expect(await harness.text()).toContain('@company/hero');
     });
 
-    it('should contain a core component', () => {
-      expect(fixture.debugElement.query(By.directive(CompanyCoreComponent))).toBeTruthy();
+    it('should contain a core component', async () => {
+      expect(await harness.getCoreComponent()).toBeTruthy();
     });
   });
 });
