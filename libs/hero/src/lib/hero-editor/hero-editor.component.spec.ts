@@ -2,6 +2,9 @@ import { FormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeroEditorComponent } from './hero-editor.component';
 import { By } from '@angular/platform-browser';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { HeroEditorComponentHarness } from '@company/hero/testing/hero-editor.component-harness';
+import { MatInputHarness } from '@angular/material/input/testing';
 
 describe('company hero editor component', () => {
   let component: HeroEditorComponent;
@@ -37,33 +40,34 @@ describe('company hero editor component', () => {
   });
 
   describe('started', () => {
-    let heroEditor: HeroEditorRemote;
+    let heroEditor: HeroEditorComponentHarness;
 
     beforeEach(async () => {
       await startComponent();
-      heroEditor = new HeroEditorRemote(fixture);
+      heroEditor = await TestbedHarnessEnvironment.harnessForFixture(fixture, HeroEditorComponentHarness);
     });
 
     describe('initially', () => {
-      it('should show title with hero name in uppercase', () => {
-        expect(heroEditor.getTitleText()).toContain(component.hero.name.toUpperCase());
+      it('should show title with hero name in uppercase', async () => {
+        expect(await heroEditor.getTitleText()).toContain(component.hero.name.toUpperCase());
       });
 
-      it('should show hero id', () => {
-        expect(heroEditor.getHeroId()).toBe(component.hero.id);
+      it('should show hero id', async () => {
+        expect(await heroEditor.getHeroId()).toBe(component.hero.id);
       });
 
-      it('should show input for hero name', () => {
-        expect(heroEditor.getNameInput().getValue()).toBe(component.hero.name);
+      it('should show input for hero name', async () => {
+        const nameInput = await heroEditor.getNameInput();
+        expect(await nameInput.getValue()).toBe(component.hero.name);
       });
     });
 
     describe('change hero name', () => {
       const updatedHeroName = 'Fireblaster';
-      let nameInput: HeroEditorNameRemote;
+      let nameInput: MatInputHarness;
 
-      beforeEach(() => {
-        nameInput = heroEditor.getNameInput();
+      beforeEach(async () => {
+        nameInput = await heroEditor.getNameInput();
       });
 
       describe(`to '${updatedHeroName}'`, () => {
@@ -73,8 +77,8 @@ describe('company hero editor component', () => {
           expect(component.hero.name).toBe(updatedHeroName);
         });
 
-        it('should update title', () => {
-          expect(heroEditor.getTitleText()).toContain(updatedHeroName.toUpperCase());
+        it('should update title', async () => {
+          expect(await heroEditor.getTitleText()).toContain(updatedHeroName.toUpperCase());
         });
       });
 
