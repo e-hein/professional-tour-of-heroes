@@ -14,4 +14,9 @@ export class HeroEditorComponentHarness extends BaseComponentHarness {
   getNameInput(): Promise<MatInputHarness> {
     return this.locatorFor(MatInputHarness)();
   }
+
+  async getTitleText(): Promise<string> {
+    const heroTitleElement = await this.locatorFor('h2')();
+    return heroTitleElement.text();
+  }
 }

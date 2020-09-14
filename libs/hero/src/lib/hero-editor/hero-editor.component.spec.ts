@@ -48,16 +48,16 @@ describe('company hero editor component', () => {
     });
 
     describe('initially', () => {
-      it('should show title with hero name in uppercase', () => {
-        expect(heroEditor.getTitleText()).toContain(component.hero.name.toUpperCase());
+      it('should show title with hero name in uppercase', async () => {
+        expect(await heroEditor.getTitleText()).toContain(component.hero.name.toUpperCase());
       });
 
-      it('should show hero id', () => {
-        expect(heroEditor.getHeroId()).toBe(component.hero.id);
+      it('should show hero id', async () => {
+        expect(await heroEditor.getHeroId()).toBe(component.hero.id);
       });
 
-      it('should show input for hero name', () => {
-        expect(heroEditor.getNameInput().getValue()).toBe(component.hero.name);
+      it('should show input for hero name', async () => {
+        expect( await (await heroEditor.getNameInput()).getValue()).toBe(component.hero.name);
       });
     });
 
@@ -76,8 +76,8 @@ describe('company hero editor component', () => {
           expect(component.hero.name).toBe(updatedHeroName);
         });
 
-        it('should update title', () => {
-          expect(heroEditor.getTitleText()).toContain(updatedHeroName.toUpperCase());
+        it('should update title', async () => {
+          expect(await heroEditor.getTitleText()).toContain(updatedHeroName.toUpperCase());
         });
       });
 
