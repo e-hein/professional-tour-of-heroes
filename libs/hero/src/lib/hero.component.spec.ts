@@ -28,7 +28,7 @@ describe('company hero component', () => {
       harness = await TestbedHarnessEnvironment.harnessForFixture(fixture, HeroComponentHarness);
     });
 
-    xit('should show the hero editor', async () => {
+    it('should show the hero editor', async () => {
       expect(await harness.getHeroEditor()).toBeTruthy();
     });
   });
