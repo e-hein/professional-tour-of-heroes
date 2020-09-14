@@ -1,5 +1,6 @@
 import { BaseComponentHarness } from '@company/core/testing';
 import { TestElement } from '@angular/cdk/testing';
+import { MatInputHarness } from '@angular/material/input/testing';
 
 export class HeroEditorComponentHarness extends BaseComponentHarness {
   static hostSelector = 'company-hero-editor';
@@ -19,28 +20,7 @@ export class HeroEditorComponentHarness extends BaseComponentHarness {
     return isNaN(heroId) ? null : heroId;
   }
 
-  getNameInput(): Promise<HeroEditorNameInputHarness> {
-    return this.locatorFor(HeroEditorNameInputHarness)();
-  }
-}
-
-export class HeroEditorNameInputHarness extends BaseComponentHarness {
-  static hostSelector = 'input[placeholder=name]';
-
-  getInput(): Promise<TestElement> {
-    return this.host();
-  }
-
-  async getValue(): Promise<string | null> {
-    const value = await (await this.getInput()).getProperty('value');
-    return typeof value === 'string' ? value : null;
-  }
-
-  async setValue(value: string | null): Promise<void> {
-    const input = await this.getInput();
-    await input.clear();
-    if (value !== null) {
-      await input.sendKeys(value);
-    }
+  getNameInput(): Promise<MatInputHarness> {
+    return this.locatorFor(MatInputHarness)();
   }
 }
